@@ -114,8 +114,10 @@ def search_image():
             
     if best_match:
         # Load the best match image and send it to the frontend
+        print("Best match: ", best_match)
         with open(best_match, "rb") as image_file:
             image_content = image_file.read()
+            
             
         response = make_response(image_content)
         response.headers.set('Content-Type', 'image/jpeg')
