@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="index.css">
     <title>Image Search</title>
 </head>
 <body>
@@ -26,7 +27,7 @@
     </form>
 
     <h2>Image Result:</h2>
-    <img id="resultImage" style="display: none;" alt="Image Result">
+    <img id="resultImage" style="display: none;" alt="Image Result", class="image_display">
 
     <script>
         const backendURL = "http://localhost:5001"; // Replace with the actual URL of your Flask backend
@@ -60,7 +61,7 @@
             const formData = new FormData(this);
 
             // Make a POST request to the backend to search for images
-            fetch(backendURL + "/search", {
+            fetch(backendURL + "/search_image", {
                 method: "POST",
                 body: formData,
             })

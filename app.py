@@ -1,6 +1,7 @@
 import os
 import json
 from flask import Flask, request, jsonify, Response, send_file, make_response
+from flask_cors import CORS
 import torch
 from imagebind import data
 from imagebind.models import imagebind_model
@@ -8,6 +9,9 @@ from imagebind.models.imagebind_model import ModalityType
 
 # Instantiate Flask app
 app = Flask(__name__)
+
+# Enable CORS
+CORS(app)
 
 # Paths for storing images and JSON data
 IMAGE_DIR = "images"
@@ -18,9 +22,9 @@ JSON_FILE = "image_data.json"
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
 # Instantiate model
-model = imagebind_model.imagebind_huge(pretrained=True)
-model.eval()
-model.to(device)
+models = imagebind_model.imagebind_huge(pretrained=True)
+models.eval()
+models.to(device)
 
 # Load JSON data if it exists
 if os.path.exists(JSON_FILE):
@@ -43,7 +47,7 @@ def calculate_embeddings(text, image_path, audio_path):
         return None
 
     with torch.no_grad():
-        embeddings = model(inputs)
+        embeddings = models(inputs)
     
     return embeddings
 
@@ -71,7 +75,7 @@ def store_image():
             json.dump(image_data, json_file)
         return jsonify({"message": "Image stored successfully"}), 200
     
-@app.route("/search", methods=["POST"])
+@app.route("/search_image", methods=["POST"])
 def search_image():
     text, image_file, audio_file = "", None, None
     # Get the query data from the request
@@ -114,16 +118,9 @@ def search_image():
             
     if best_match:
         # Load the best match image and send it to the frontend
-        print("Best match: ", best_match)
         with open(best_match, "rb") as image_file:
             image_content = image_file.read()
-            
-            
-        response = make_response(image_content)
-        response.headers.set('Content-Type', 'image/jpeg')
-        return response
-        # return Response(image_content, content_type="image/jpeg"), 200
-        # return send_file(best_match, mimetype='image/jpeg')
+        return Response(image_content, content_type="image/jpeg"), 200
     else:
         return jsonify({"error": "No match found"}), 404
         
