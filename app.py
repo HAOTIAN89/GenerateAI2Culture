@@ -6,6 +6,7 @@ import torch
 from imagebind import data
 from imagebind.models import imagebind_model
 from imagebind.models.imagebind_model import ModalityType
+from utils import audio2img, image2image, text2img, audiotext2image, audioimage2image, textimage2image, audioimagetext2image
 
 # Instantiate Flask app
 app = Flask(__name__)
@@ -17,6 +18,7 @@ CORS(app)
 IMAGE_DIR = "images"
 QUERY_DIR = "query"
 JSON_FILE = "image_data.json"
+GENERATE_DIR = "generate"   
 
 # Check if CUDA is available
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
@@ -123,6 +125,58 @@ def search_image():
         return Response(image_content, content_type="image/jpeg"), 200
     else:
         return jsonify({"error": "No match found"}), 404
+    
+@app.route("/generate_image", methods=["POST"])
+def generate_image():
+    text, image_file, audio_file = "", None, None
+    # Get the query data from the request
+    text = request.form.get("text")
+    image_file = request.files.get("image")
+    audio_file = request.files.get("audio")
+    # if all are empty, return error
+    if not text and not image_file and not audio_file:
+        return jsonify({"error": "No attribute data provided"}), 400
+    
+    # Calculate embeddings for the attributes
+    image_signal = False
+    audio_signal = False
+    text_signal = False
+    if image_file:
+        image_filename = os.path.join(GENERATE_DIR, image_file.filename)
+        image_file.save(image_filename)
+        image_embeddings = calculate_embeddings("", image_filename, "")[ModalityType.VISION]
+        image_signal = True
+    if audio_file:
+        audio_filename = os.path.join(GENERATE_DIR, audio_file.filename)
+        audio_file.save(audio_filename)
+        audio_embeddings = calculate_embeddings("", "", audio_filename)[ModalityType.AUDIO]
+        audio_signal = True
+    if text:
+        text_signal = True
+        
+    # Generate image
+    if image_signal and audio_signal and text_signal:
+        result = audioimagetext2image(image_embeddings, audio_embeddings, text)
+    elif image_signal and audio_signal:
+        result = audioimage2image(image_embeddings, audio_embeddings)
+    elif image_signal and text_signal:
+        result = textimage2image(image_embeddings, text)
+    elif audio_signal and text_signal:
+        result = audiotext2image(audio_embeddings, text)
+    elif image_signal:
+        result = image2image(image_embeddings)
+    elif audio_signal:
+        result = audio2img(audio_embeddings)
+    elif text_signal:
+        result = text2img(text)
+    else:
+        return jsonify({"error": "No attribute data provided"}), 400
+    
+    # Send the generated image to the frontend
+    result.save("generate/result.jpg")
+    with open("generate/result.jpg", "rb") as image_file:
+        image_content = image_file.read()
+    return Response(image_content, content_type="image/jpeg"), 200
         
 if __name__ == "__main__":
     app.run(host="localhost", port=5001)
