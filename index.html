@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en"></html>
 <html>
+<link rel="stylesheet" type="text/css" href="index.css">
 <head>
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <title>Image Search</title>
+    <title>GenAI for Culture</title>
 </head>
 <body>
-    <h1>Image Search</h1>
+    <h1>GenAI for Culture</h1>
 
-    <h2>Upload image:</h2>
+    <h2>Image Search</h2>
+
+    <h3>Upload image</h3>
     <form id="uploadForm" enctype="multipart/form-data">
         <label for="imageInput">Image:</label>
         <input type="file" id="imageInput" name="file" accept=".jpg">
@@ -16,7 +18,7 @@
         <input type="submit" value="Upload Image">
     </form>
 
-    <h2>Search for image:</h2>
+    <h3>Search for image</h3>
     <form id="searchForm" enctype="multipart/form-data">
         <label for="searchInput">Search Text:</label>
         <input type="text" id="searchInput" name="text">
@@ -27,7 +29,7 @@
         <input type="submit" value="Search Image">
     </form>
 
-    <h2>Generate image:</h2>
+    <h2>Image Generation</h2>
     <form id="generateForm" enctype="multipart/form-data">
         <label for="generateInput">Text Attribute:</label>
         <input type="text" id="generateInput" name="text">
@@ -40,7 +42,7 @@
         <br>
         <input type="submit" value="Generate Image">
 
-    <h2>Image Result:</h2>
+    <h2>Image Result</h2>
     <img id="resultImage" style="display: none;" alt="Image Result", class="image_display">
 
     <script>

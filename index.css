@@ -1,6 +1,93 @@
+/* styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    padding: 50px; 
+    margin: 0;
+    text-align: center;
+    color: white;
+}
+
+h1 {
+    background-image: url('../DATA/cover.jpg'); 
+    background-size: cover;
+    background-position: center;
+    font-size: 3.5em;
+    margin-bottom: 0.5em;
+    text-align: center;
+    letter-spacing: 3px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+h3 {
+    color: #1e1e1e;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="file"], input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#resultImage {
+    display: none;
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
 .image_display {
     max-width: 100%; 
     max-height: 300px; 
     width: auto; 
     height: auto; 
 }
+
