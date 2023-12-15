@@ -2,7 +2,7 @@
 <html style="font-size: 16px;" lang="es"><head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="​Design Systems&nbsp;Madrid, ​Let your voice be heard at Design Systems New York, ​Bring your organisation closer to our community, 2022Image Gallery, ​Skills and experience that shape eCommerce, Tickets, ​Workshops, ​Here are some of our clients, ​Get in touch">
+    <meta name="keywords" content="Design Systems&nbsp;Madrid, Let your voice be heard at Design Systems New York, ​Bring your organisation closer to our community, 2022Image Gallery, ​Skills and experience that shape eCommerce, Tickets, ​Workshops, ​Here are some of our clients, ​Get in touch">
     <meta name="description" content="">
     <title>Model</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
@@ -65,17 +65,17 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <h2 class="u-custom-font u-font-montserrat u-text u-text-1">Try the model functions</h2>
 
-        <h2 class = "fdhh2">Image Search</h2>
+        <h2 class = "fdhh2">Image Upload</h2>
 
-    <h3 class ="fhdh3">Upload image</h3>
     <form id="uploadForm" enctype="multipart/form-data">
         <label for="imageInput" class ="fdhlabel">Image:</label>
         <input type="file" id="imageInput" name="file" accept=".jpg" class = "fdhinput">
         <br>
-        <input type="submit" value="Upload Image" class = "fdhinput">
+        <input type="submit" value="Upload Image" class = "fdhinput-submit">
     </form>
 
-    <h3 class ="fdhh3">Search for image</h3>
+        <h2 class = "fdhh2">Image Search</h2>
+
     <form id="searchForm" enctype="multipart/form-data">
         <label for="searchInput" class ="fdhlabel">Search Text:</label>
         <input type="text" id="searchInput" name="text" class = "fdhinput">
@@ -83,7 +83,7 @@
         <label for="searchFile" class ="fdhlabel">Upload Image (JPEG) or Audio (WAV):</label>
         <input type="file" id="searchFile" name="file" accept=".jpg,.wav" class = "fdhinput">
         <br>
-        <input type="submit" value="Search Image" class = "fdhinput">
+        <input type="submit" value="Search Image" class = "fdhinput-submit">
     </form>
 
     <h2 class = "fdhh2">Image Generation</h2>
@@ -97,7 +97,7 @@
         <label for="audioInput" class ="fdhlabel">Audio Attribute (WAV):</label>
         <input type="file" id="audioInput" name="audio" accept=".wav" class = "fdhinput">
         <br>
-        <input type="submit" value="Generate Image" class = "fdhinput">
+        <input type="submit" value="Generate Image" class = "fdhinput-submit">
 
     <h2 class = "fdhh2">Image Result</h2>
     <img id="resultImage" style="display: none;" alt="Image Result", class="fdhimage_display">

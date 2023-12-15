@@ -32,6 +32,7 @@
 
 .fdhh2 {
   font-size: 1.5em;
+  font-weight: 1.5em;
   margin-bottom: 0.5em;
   text-align: center;
   letter-spacing: 3px;
@@ -59,12 +60,24 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-}
-
-.fdhinput {
   background-color: #f09a27;
   color: white;
   cursor: pointer;
+}
+
+.fdhinput-submit {
+  width: 40%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #f09a27;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 auto;
+  display: block;
 }
 
 #resultImage {
@@ -79,6 +92,8 @@
   max-height: 300px; 
   width: auto; 
   height: auto; 
+  margin: 0 auto;
+  display: block;
 }
 
 
