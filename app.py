@@ -15,7 +15,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Paths for storing images and JSON data
-IMAGE_DIR = "images"
+IMAGE_DIR = "imagebind_images"
 QUERY_DIR = "query"
 JSON_FILE = "image_data.json"
 GENERATE_DIR = "generate"   
@@ -173,8 +173,8 @@ def generate_image():
         return jsonify({"error": "No attribute data provided"}), 400
     
     # Send the generated image to the frontend
-    result.save("generate/result.jpg")
-    with open("generate/result.jpg", "rb") as image_file:
+    result.save("generate_results/result.jpg")
+    with open("generate_results/result.jpg", "rb") as image_file:
         image_content = image_file.read()
     return Response(image_content, content_type="image/jpeg"), 200
         

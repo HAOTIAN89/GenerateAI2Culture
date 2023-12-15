@@ -9,7 +9,7 @@ device1 = "cuda:0" if torch.cuda.is_available() else "cpu"
 device2 = "cpu"
 
 #input
-text = "two people eating PHO in Vetniam"
+text = "a painting"
 image = "images/car_image.jpg"
 audio = None
 
@@ -31,5 +31,7 @@ def calculate_image_embeddings(image_path):
         return None
 
 imageembeddings = calculate_image_embeddings(image).to(device2)
-result = textimage2image(imageembeddings,text)
+promptembeddings = calculate_image_embeddings(text).to(device2)
+# result = textimage2image(imageembeddings,text)
+result = textimage2image(promptembeddings,imageembeddings)
 result.save("generate/8.png")
