@@ -37,12 +37,12 @@ models = imagebind_model.imagebind_huge(pretrained=True)
 models.eval()
 models.to(device)
 
-text_list = ["a rococo oil painting", "a baroque oil painting", "a impressionism oil painting", "a renaissance oil painting", "a romanticism oil painting", "a sketching painting"]
+text_list = ["a 17th to 19th Century clothing", "a 20th century clothing", "an ancient clothing", "a medieval clothing"]
 text_data = {}
 
 for text in text_list:
     embedding = calculate_embeddings(text, "", "")
     text_data[text] = embedding[ModalityType.TEXT].numpy().tolist()
     
-save_image_data(text_data, "search_text_paintings.json")
+save_image_data(text_data, "search_text_clothing_time.json")
     
