@@ -53,7 +53,11 @@ if __name__ == "__main__":
     models.to(device)
 
     # load the images in the given directory and compute their embeddings, save them to a JSON file
-    IMAGE_DIR = '../../../datasets/painting_dataset'
-    JSON_FILE = 'search_paintings.json'
+    # IMAGE_DIR = '../../../datasets/painting_dataset'
+    # IMAGE_DIR = '../../../datasets/clothing_time_dataset/'
+    IMAGE_DIR = '../../../datasets/area_image_dataset/'
+    # JSON_FILE = 'search_paintings.json'
+    # JSON_FILE = 'search_clothing_time.json'
+    JSON_FILE = 'search_area.json'
     image_data = load_images_and_compute_embeddings(IMAGE_DIR)
     save_image_data(image_data, JSON_FILE)
